@@ -10,6 +10,7 @@ Un smartwatch open-source cu ecran E-Paper, construit în jurul SoC-ului Nordic 
 - [Bill of Materials](#bill-of-materials)
 - [Estimare Consum Energetic](#estimare-consum-energetic)
 - [Decizii de Design și Constrângeri](#decizii-de-design-și-constrângeri)
+- [Imagini](#imagini)
 - [Structura Repository-ului](#structura-repository-ului)
 - [Licență](#licență)
 
@@ -88,7 +89,7 @@ Inima proiectului este **nRF52840** — un SoC cu procesor ARM Cortex-M4F la 64 
 
 **Butoanele**: trei butoane push (UP, ENTER, DOWN) cu rezistențe de pull-up de 10kΩ la 3.3V și condensatoare de debouncing de 1µF pe fiecare. Sunt active pe LOW — apăsarea trage pinul la GND.
 
-**Conectivitate BLE**: antena ceramică Johanson 2450AT18B100E, conectată la pinul ANT al nRF52840 printr-o rețea de impedanță matching (L1 = 3.9nH, C3 = 1pF, C4 = 1pF). Zona de sub antenă este decupată din ambele planuri de masă.
+**Conectivitate BLE**: antena ceramică Johanson 2450AT18B100E, conectată la pinul ANT al nRF52840 printr-o rețea de impedanță matching (L1 = 3.9nH, C3 = 1pF, C4 = 1pF). Zona de sub antenă este decupată din toate cele trei planuri de masă.
 
 **Debug/Programare**: interfață SWD (SWDIO, SWDCLK) rutată la conectorul Tag-Connect TC2030-IDC (J2) și la test pad-uri. Pin-ul SWO (P1.00) este disponibil și el pe test pad pentru trace output.
 
@@ -204,16 +205,21 @@ Aceste estimări sunt teoretice; consumul real va depinde de firmware și patter
 
 ### Reguli PCB respectate
 - **Dimensiune PCB**: ~46 x 35 mm (forme octogonale cu decupaje pentru butoane), grosime 1 mm
-- **Layere**: 4 straturi (BOTTOM - nefolosit), cu plan de masă pe 3 dintre ele
+- **Stackup 4 layere**:
+  - **TOP**: componente + rutare + ground pour
+  - **Inner 1**: rutare + ground pour
+  - **Inner 2**: rutare + ground pour
+  - **BOTTOM**: nefolosit (layer-ul a fost lăsat gol conform cerințelor)
 - **Componente**: toate amplasate exclusiv pe TOP
-- **Trasee de putere** (VBUS, VREG, 3V3, VBAT): width = 0.3 mm
+- **Trasee de putere** (VBUS, VREG, 3V3, VBAT): width = 0.3 mm, subțiate doar sub BGA-uri unde spațiul impune
 - **Trasee de date**: minimum 0.15 mm
 - **Fără unghiuri de 90°** pe niciun traseu
 - **Condensatoare de decuplare** (100nF): plasate imediat lângă pinii VDD ai fiecărui IC — în cazul nRF52840, câte un condensator per grup de pini VDD (C6, C7, C8, C12, C14 pe 3V3)
+- **Via stitching** între cele trei planuri de masă (TOP, Inner 1, Inner 2), cu densitate crescută în zona circuitului radio pentru impedanță scăzută a căii de retur
 
 ### Antena
 - Antena ceramică (ANT1) este plasată pe marginea de sus a PCB-ului (cea mai depărtată de corpul utilizatorului)
-- **Decupaj complet** al cuprului sub antenă pe layere — nicio rutare în acea zonă
+- **Decupaj complet** al cuprului sub antenă pe toate cele trei layere cu ground pour (TOP, Inner 1, Inner 2) — nicio rutare în acea zonă
 - Rețea de matching: L1 (3.9nH), C3 (1pF), C4 (1pF) conform recomandărilor Nordic
 
 ### Alimentarea display-ului
@@ -260,6 +266,24 @@ Placa dispune de 14 test pad-uri marcate clar în silkscreen, permițând debugg
 
 ---
 
+## Imagini
+
+### Schema electrică
+
+**Pagina 1 — MCU, Power, IMU, SWD:**
+
+![Schematic Page 1](Images/Schematic1.jpeg)
+
+**Pagina 2 — E-Paper, Haptic, Butoane, USB-C:**
+
+![Schematic Page 2](Images/Schematic2.jpeg)
+
+### Layout PCB (TOP)
+
+![PCB Layout Top](Images/PCB.jpeg)
+
+---
+
 ## Structura Repository-ului
 
 ```
@@ -275,7 +299,9 @@ InkTime_Smartwatch/
 │   ├── WearAwareNewCase.step  # Model 3D complet (PCB + baterie + display + carcasă)
 │   └── WearAwareNewCase.3mf   # Model 3D format 3MF
 ├── Images/
-│   └── (randări PCB, ansamblu etc.)
+│   ├── schematic_mcu_power.jpeg       # Schema electrică - MCU, Power, IMU, SWD
+│   ├── schematic_epaper_peripherals.jpeg # Schema electrică - E-Paper, Haptic, USB-C
+│   └── pcb_layout_top.jpeg            # Layout PCB - vedere TOP
 ├── LICENSE                    # Apache License 2.0
 └── README.md                  # Acest fișier
 ```
