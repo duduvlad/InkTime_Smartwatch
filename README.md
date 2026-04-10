@@ -299,9 +299,9 @@ InkTime_Smartwatch/
 │   ├── WearAwareNewCase.step  # Model 3D complet (PCB + baterie + display + carcasă)
 │   └── WearAwareNewCase.3mf   # Model 3D format 3MF
 ├── Images/
-│   ├── schematic_mcu_power.jpeg       # Schema electrică - MCU, Power, IMU, SWD
-│   ├── schematic_epaper_peripherals.jpeg # Schema electrică - E-Paper, Haptic, USB-C
-│   └── pcb_layout_top.jpeg            # Layout PCB - vedere TOP
+│   ├── Schematic1.jpeg       # Schema electrică - MCU, Power, IMU, SWD
+│   ├── Schematic2.jpeg # Schema electrică - E-Paper, Haptic, USB-C
+│   └── Pcb.jpeg            # Layout PCB - vedere TOP
 ├── LICENSE                    # Apache License 2.0
 └── README.md                  # Acest fișier
 ```
