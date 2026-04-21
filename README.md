@@ -17,7 +17,7 @@ Un smartwatch open-source cu ecran E-Paper, construit în jurul SoC-ului Nordic 
 ---
 
 ## Diagrama Bloc
-
+ 
 ```
                           ┌─────────────────────────────────┐
                           │         nRF52840 (U1)           │
