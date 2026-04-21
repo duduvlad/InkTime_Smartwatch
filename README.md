@@ -282,6 +282,16 @@ Placa dispune de 14 test pad-uri marcate clar în silkscreen, permițând debugg
 
 ![PCB Layout Top](Images/PCB.jpeg)
 
+**Pagina 3 — PCB3D:**
+
+![PCB#D](Images/PCB3D.jpeg)
+
+**Pagina 3 — CARCASA:**
+
+![CARCACSA](Images/Carcasa.jpeg)
+
+
+
 ---
 
 ## Structura Repository-ului
