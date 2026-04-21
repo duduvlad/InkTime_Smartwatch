@@ -303,15 +303,18 @@ InkTime_Smartwatch/
 │   └── PCB.brd                # Layout-ul PCB (Eagle/Fusion 360)
 ├── Manufacturing/
 │   ├── gerbers.zip            # Fișiere Gerber pentru fabricație PCB
-│   ├── BOM.csv                # Bill of Materials complet
-│   └── PickAndPlace.csv       # Coordonate de asamblare SMT
+│   ├── BOM.bom                # Bill of Materials complet
+│   └── PickAndPlace.cpl       # Coordonate de asamblare SMT
 ├── Mechanical/
 │   ├── WearAwareNewCase.step  # Model 3D complet (PCB + baterie + display + carcasă)
 │   └── WearAwareNewCase.3mf   # Model 3D format 3MF
+│   └── PCB.step                   # Model 3D al PCB-ului cu componente
 ├── Images/
 │   ├── Schematic1.jpeg       # Schema electrică - MCU, Power, IMU, SWD
 │   ├── Schematic2.jpeg # Schema electrică - E-Paper, Haptic, USB-C
 │   └── Pcb.jpeg            # Layout PCB - vedere TOP
+│   ├── PCB3D.jpeg                 # Randare 3D a PCB-ului
+│   └── Carcasa.jpeg               # Randare carcasă
 ├── LICENSE                    # Apache License 2.0
 └── README.md                  # Acest fișier
 ```
